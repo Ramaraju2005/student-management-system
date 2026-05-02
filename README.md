@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🎓 NSF Scholarship Management System</h1>
+  <h1>🎓 NSF Scholarship Student Management System</h1>
   <p>A comprehensive MERN stack platform for streamlining scholarship applications, multi-tier reviews, and fund disbursements.</p>
 </div>
 
