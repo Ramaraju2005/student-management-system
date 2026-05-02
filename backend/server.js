@@ -3,7 +3,13 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const studentRoutes = require("./routes/studentRoutes");
+const authRoutes = require("./routes/authRoutes");
+const applicationRoutes = require("./routes/applicationRoutes");
+const coordinatorRoutes = require("./routes/coordinatorRoutes");
+const headOfficeRoutes = require("./routes/headOfficeRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const errorHandler = require("./middleware/errorHandler");
+const path = require("path");
 
 // Load environment variables
 dotenv.config();
@@ -18,8 +24,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve uploads folder statically
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Routes
+app.use("/api/auth", authRoutes);
 app.use("/api/students", studentRoutes);
+app.use("/api/applications", applicationRoutes);
+app.use("/api/coordinator", coordinatorRoutes);
+app.use("/api/head-office", headOfficeRoutes);
+app.use("/api/admin", adminRoutes);
 
 // Health check route
 app.get("/api/health", (req, res) => {

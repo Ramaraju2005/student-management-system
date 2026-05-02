@@ -1,268 +1,205 @@
-# 🎓 Smart Student Management System
+<div align="center">
+  <h1>🎓 NSF Scholarship Management System</h1>
+  <p>A comprehensive MERN stack platform for streamlining scholarship applications, multi-tier reviews, and fund disbursements.</p>
+</div>
 
-A full-stack **MERN** web application for managing student records — built with MongoDB, Express.js, React.js, and Node.js. Designed as a clean, professional tool for educational administrators to add, view, edit, search, and delete student data with ease.
+<br />
 
----
+## 🌟 Overview
 
-## ✨ Features
-
-- **Dashboard** — Total, active, inactive student counts + recently added students
-- **Add Student** — Validated form to register new students with all required details
-- **View Students** — Searchable and filterable table of all student records
-- **Edit Student** — Pre-filled form to update existing student information
-- **Delete Student** — Confirmation modal before permanent deletion
-- **Search & Filter** — Search by name, roll number, email, or course; filter by status
-- **Toast Notifications** — Success and error feedback on every action
-- **Responsive Design** — Works on mobile, tablet, and desktop
-- **Loading States** — Spinners and empty states throughout the app
-- **Input Validation** — Both frontend and backend validation with helpful error messages
+The **National Scholarship Foundation (NSF) System** provides an end-to-end digital workflow for scholarship processing. By replacing paper-based approvals with a secure, role-based digital portal, the system ensures transparency, speed, and accuracy from the moment a student applies to the final bank disbursement.
 
 ---
 
-## 🛠 Tech Stack
+## ✨ Key Features
 
-| Layer      | Technology                        |
-|------------|-----------------------------------|
-| Frontend   | React 18, React Router v6, Vite   |
-| Backend    | Node.js, Express.js               |
-| Database   | MongoDB, Mongoose ODM             |
-| Styling    | Custom CSS (CSS Variables)        |
-| HTTP       | Axios                             |
-| Dev Tools  | Nodemon, ESLint                   |
+- 🔐 **Role-Based Access Control:** Secure, isolated portals tailored for Students, Chapter Coordinators, Head Office Admins, and Super Admins.
+- 📝 **Smart Application Flow:** Students can save drafts, upload requisite documents, and track their application progress via an interactive timeline.
+- 🔄 **Multi-Tier Verification:** Built-in review processes allow Chapter Coordinators to request corrections before escalating to the Head Office for final sanctioning.
+- 💸 **Disbursement Tracking:** Dedicated tools for the Head Office to record and track bank transfer reference numbers.
+- 📁 **Document Management:** Seamless integration for uploading and previewing certificates and bank details.
 
 ---
 
-## 📁 Project Structure
+## 🛠️ Technology Stack
 
-```
-student-management-system/
-├── backend/
-│   ├── config/
-│   │   └── db.js                  # MongoDB connection
-│   ├── controllers/
-│   │   └── studentController.js   # CRUD logic
-│   ├── middleware/
-│   │   └── errorHandler.js        # Global error handler
-│   ├── models/
-│   │   └── Student.js             # Mongoose schema
-│   ├── routes/
-│   │   └── studentRoutes.js       # API routes
-│   ├── .env                       # Environment variables
-│   ├── package.json
-│   └── server.js                  # Express app entry point
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── DeleteModal.jsx    # Confirmation modal
-│   │   │   ├── EmptyState.jsx     # Empty placeholder
-│   │   │   ├── Input.jsx          # Reusable input field
-│   │   │   ├── Sidebar.jsx        # Navigation sidebar
-│   │   │   ├── Spinner.jsx        # Loading spinner
-│   │   │   ├── StudentForm.jsx    # Add/Edit form
-│   │   │   └── Topbar.jsx         # Top header bar
-│   │   ├── hooks/
-│   │   │   └── useToast.jsx       # Toast notification context
-│   │   ├── pages/
-│   │   │   ├── AddStudent.jsx     # Add student page
-│   │   │   ├── Dashboard.jsx      # Dashboard page
-│   │   │   ├── EditStudent.jsx    # Edit student page
-│   │   │   └── StudentList.jsx    # All students page
-│   │   ├── services/
-│   │   │   └── api.js             # Axios API calls
-│   │   ├── App.jsx                # App + routing
-│   │   ├── index.css              # Global styles
-│   │   └── main.jsx               # React entry point
-│   ├── .env
-│   ├── index.html
-│   ├── package.json
-│   └── vite.config.js
-│
-├── .gitignore
-└── README.md
-```
+**Frontend**
+- **Framework:** React.js (Vite)
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide React
+- **Routing:** React Router DOM
 
----
-
-## 📸 Screenshots
-
-> _Add your screenshots here after running the app._
-
-- Dashboard
-![alt text](<Screenshot 2026-05-02 120858.png>)
-- Student List with Search
-![alt text](<Screenshot 2026-05-02 120928.png>)
-- Add Student Form
-![alt text](<Screenshot 2026-05-02 120954.png>)
-- Edit Student Form
-![alt text](<Screenshot 2026-05-02 121024.png>)
-- Delete Confirmation Modal
-![alt text](<Screenshot 2026-05-02 121049.png>)
-
--Notification
-![alt text](<Screenshot 2026-05-02 121347.png>)
+**Backend**
+- **Environment:** Node.js & Express.js
+- **Database:** MongoDB & Mongoose
+- **Authentication:** JSON Web Tokens (JWT) & bcryptjs
+- **File Uploads:** Multer
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB running locally or a MongoDB Atlas URI
 
-- Node.js v18+ installed
-- MongoDB running locally (or a MongoDB Atlas URI)
-- Git
+### 1. Backend Setup
 
----
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/Ramaraju2005/student-management-system.git
-cd student-management-system
-```
-
----
-
-### 2. Setup the Backend
-
+Open a terminal and navigate to the backend directory:
 ```bash
 cd backend
 npm install
 ```
 
-Create / update the `.env` file:
-
+Create a `.env` file in the `backend` folder with the following variables:
 ```env
 PORT=5000
-MONGO_URI=mongodb://localhost:27017/student_management
-NODE_ENV=development
+MONGO_URI=mongodb://127.0.0.1:27017/student-management
+JWT_SECRET=your_super_secret_jwt_key
+```
+
+### 2. Database Seeding
+
+To quickly test the platform, populate the database with demo users and chapters:
+```bash
+node seed.js
 ```
 
 Start the backend server:
-
 ```bash
-# Development (with auto-reload)
 npm run dev
-
-# Production
-npm start
 ```
 
-The API will run at: `http://localhost:5000`
+### 3. Frontend Setup
 
----
-
-### 3. Setup the Frontend
-
+Open a new terminal window and navigate to the frontend directory:
 ```bash
-cd ../frontend
+cd frontend
 npm install
-```
-
-Create / update the `.env` file:
-
-```env
-VITE_API_URL=http://localhost:5000/api
-```
-
-Start the frontend dev server:
-
-```bash
 npm run dev
 ```
 
-The app will run at: `http://localhost:3000`
+The application should now be accessible at `http://localhost:5173`.
 
 ---
 
-## 🔌 API Endpoints
+## 🔑 Demo Credentials
 
-| Method | Endpoint                  | Description              |
-|--------|---------------------------|--------------------------|
-| GET    | `/api/health`             | Health check             |
-| GET    | `/api/students/stats`     | Dashboard statistics     |
-| GET    | `/api/students`           | Get all students         |
-| GET    | `/api/students?search=x`  | Search students          |
-| GET    | `/api/students?status=Active` | Filter by status     |
-| GET    | `/api/students/:id`       | Get single student       |
-| POST   | `/api/students`           | Create new student       |
-| PUT    | `/api/students/:id`       | Update student           |
-| DELETE | `/api/students/:id`       | Delete student           |
+If you ran the seed script, you can log in immediately using the unified login portal. 
 
-### Sample POST Body
+**Password for all accounts:** `password123`
 
-```json
-{
-  "fullName": "Arjun Sharma",
-  "rollNumber": "CS2024001",
-  "email": "arjun@example.com",
-  "phone": "+91 98765 43210",
-  "course": "B.Tech",
-  "department": "Computer Science",
-  "year": "2nd Year",
-  "status": "Active",
-  "address": "123 Main Street, Hyderabad, Telangana"
-}
+| Role | Email Address | Capabilities |
+| :--- | :--- | :--- |
+| **Student** | `student@example.com` | Create applications, upload files, check status. |
+| **Chapter Coordinator** | `delhi@nsf.org` | Review applications submitted to the Delhi NCR chapter. |
+| **Head Office** | `headoffice@nsf.org` | Final application approval, amount assignment, and disbursement. |
+| **Super Admin** | `admin@nsf.org` | Create regional chapters, assign coordinators, and manage/delete users. |
+
+---
+
+## 🏗️ Folder Structure
+
+```text
+student-management-system/
+├── backend/                  # Express server & APIs
+│   ├── controllers/          # Business logic (Auth, Apps, Admin)
+│   ├── middleware/           # JWT verification & Multer config
+│   ├── models/               # Mongoose database schemas
+│   ├── routes/               # API endpoint definitions
+│   └── uploads/              # Local storage for user documents
+│
+└── frontend/                 # React application
+    └── src/
+        ├── components/       # Global UI (Sidebar, Layouts)
+        ├── context/          # React Context (Auth State)
+        ├── pages/            # Role-specific dashboard views
+        └── services/         # Axios interceptors for API calls
 ```
 
 ---
 
-## 🌍 Environment Variables
+## 🔄 Application Workflow
 
-### Backend (`backend/.env`)
-
-| Variable    | Description                          | Default                                      |
-|-------------|--------------------------------------|----------------------------------------------|
-| `PORT`      | Port for Express server              | `5000`                                       |
-| `MONGO_URI` | MongoDB connection string            | `mongodb://localhost:27017/student_management` |
-| `NODE_ENV`  | Environment mode                     | `development`                                |
-
-### Frontend (`frontend/.env`)
-
-| Variable        | Description                  | Default                        |
-|-----------------|------------------------------|--------------------------------|
-| `VITE_API_URL`  | Backend API base URL         | `http://localhost:5000/api`    |
-
----
-
-## 🧪 Testing the API
-
-You can test the API using tools like **Postman** or **Thunder Client**.
-
-**Check health:**
-```
-GET http://localhost:5000/api/health
-```
-
-**Create a student:**
-```
-POST http://localhost:5000/api/students
-Content-Type: application/json
+```mermaid
+graph TD
+    A[Student Registers] --> B[Fills Application Draft]
+    B --> C[Uploads Documents]
+    C --> D[Submits Application]
+    D --> E{Chapter Coordinator}
+    E -->|Correction| B
+    E -->|Reject| F[End]
+    E -->|Approve| G[Forward to Head Office]
+    G --> H{Head Office Admin}
+    H -->|Reject| F
+    H -->|Approve| I[Assign Amount]
+    I --> J[Process Disbursement]
+    J --> K[Scholarship Disbursed]
 ```
 
 ---
+## ScreenShots
+   student login
+     ![alt text](<Screenshot 2026-05-02 172949.png>)
+   student application form 
+     ![alt text](<Screenshot 2026-05-02 173020.png>)  
 
-## 🔮 Future Improvements
+   student dashboard and tracking
+     ![alt text](<Screenshot 2026-05-02 173153.png>)
+   Chapter coordinator dashboard 
+     ![alt text](<Screenshot 2026-05-02 173308.png>)  
+   chapter coordinator review 
+    ![alt text](<Screenshot 2026-05-02 173432.png>)
+   head office dashboard  
+    ![alt text](<Screenshot 2026-05-02 173624.png>) 
+   head office review 
+     ![alt text](<Screenshot 2026-05-02 173703.png>)
+    head office Sanction amount
+     ![alt text](<Screenshot 2026-05-02 173821.png>) 
+    headoffice paying amount/ Disbursement 
+      ![alt text](<Screenshot 2026-05-02 173921.png>)
+    head office paid
+     ![alt text](<Screenshot 2026-05-02 173957.png>)  
+    head office  dashboard after paying amount
+      ![alt text](<Screenshot 2026-05-02 174031.png>)
+   admin dashboard
+    ![alt text](<Screenshot 2026-05-02 174133.png>)
+    admin edit / add  a chapter 
+     ![alt text](<Screenshot 2026-05-02 174205.png>)
+  admin user management
+    ![alt text](<Screenshot 2026-05-02 174150.png>)
+  student after getting amount  dashboard
+   ![alt text](<Screenshot 2026-05-02 174358.png>)  
 
-- [ ] Authentication & role-based access (Admin / Viewer)
-- [ ] Export student data to CSV / PDF
-- [ ] Pagination for large datasets
-- [ ] Student profile detail page
-- [ ] Bulk import students via CSV upload
-- [ ] Attendance and grade tracking
-- [ ] Email notifications
-- [ ] Dark mode support
-- [ ] Charts for enrollment statistics
+   
+## 📑 API Reference
+
+### Authentication
+- `POST /api/auth/register` - Create a new account
+- `POST /api/auth/login` - Authenticate user & get token
+- `GET /api/auth/me` - Get current user profile
+
+### Student Applications
+- `GET /api/applications/chapters` - List available chapters
+- `POST /api/applications` - Save application draft
+- `GET /api/applications/my` - Fetch user's application
+- `POST /api/applications/:id/submit` - Final submission
+- `POST /api/applications/:id/documents` - Upload files
+
+### Management (Coordinator & Head Office)
+- `GET /api/coordinator/applications` - View chapter applications
+- `POST /api/coordinator/applications/:id/review` - Review/Correction action
+- `GET /api/head-office/applications` - View all forwarded apps
+- `POST /api/head-office/applications/:id/assign-amount` - Set scholarship value
 
 ---
 
-## 👤 Author
+## 🛤️ Roadmap
 
-Built as an internship project submission.  
-Feel free to fork, customize, and improve!
+- [ ] **Email Notifications:** Automatic alerts for status changes.
+- [ ] **Cloud Storage:** Transition from local storage to AWS S3 / Cloudinary.
+- [ ] **Analytics:** Interactive charts for Super Admin using Recharts.
+- [ ] **Audit Logs:** Track every action taken on an application for transparency.
 
 ---
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+*Built with modern web standards to empower educational accessibility.*
