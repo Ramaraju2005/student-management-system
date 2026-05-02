@@ -121,7 +121,7 @@ student-management-system/
 
 ## 🔄 Application Workflow
 
-```mermaid
+```
 graph TD
     A[Student Registers] --> B[Fills Application Draft]
     B --> C[Uploads Documents]
